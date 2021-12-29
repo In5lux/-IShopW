@@ -9,7 +9,7 @@ const catalog = () => {
   
   let isOpen = false;
 
-  btnCatalog.addEventListener('click', (e)=>{
+  btnCatalog.addEventListener('click', ()=>{
     isOpen = !isOpen;
     
     if(isOpen) {catalogModal.style.display='block';
@@ -23,6 +23,16 @@ const catalog = () => {
 			renderGoods(categoryFilter(data,text))
 		});
     })
+  })
+
+  window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        catalogModal.style.display = '';
+      }
+  });
+
+  window.addEventListener('click',e=>{	  
+	  if(!e.target.closest('.catalog-button') && !e.target.classList.contains('.catalog-item')){catalogModal.style.display='';}
   })
 
 }
